@@ -513,36 +513,14 @@
     <script src="./assets/js/com.js"></script>
 
     <script>
-      var anchors = document.getElementsByTagName("a");
-       
-       function getParameterByName(name) {
-       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-       var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-       results = regex.exec(location.search);
-       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-       }
-       
-       var src = getParameterByName('src');
-       
-       var convlink = 'https://pay.kiwify.com.br/vUrnL4r?src='+src;
-       
-       for (var i = 0; i < anchors.length; i++) {
-       anchors[i].href = convlink;
-       anchors[i].target = '_blank';
-       }
-       
-       
-       setTimeout(function() { prepareFrame(convlink) }, 3000);
-       
-       history.pushState({}, "", location.href);
-       history.pushState({}, "", location.href);
-       
-       window.onpopstate = function() {
-       setTimeout(function() {
-       location.href = convlink;
-       }, 1);
-       };
-         </script>  	
+    	 window.history.pushState({page: 1}, "", "");
+		window.onpopstate = function(event) {
+		    if(event){
+			window.location.href = 'https://pay.kiwify.com.br/vUrnL4r';
+			// Code to handle back button or prevent from navigation
+		    }
+		}
+     </script>  	
          
          <script>
               function chamaCheckout() {
